@@ -1,0 +1,711 @@
+
+<!-- https://script.google.com/macros/s/AKfycbwPQpaM_eqjwXIxzFKU-TC0KV0PbVSeSD10uTjd8bb0BcCMYE2rQ3f8kG9nIXEgNfqY/exec -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous"
+        referrerpolicy="no-referrer"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous"
+        referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Prompt&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.5/pagination.css" integrity="sha512-QmxybGIvkSI8+CGxkt5JAcGOKIzHDqBMs/hdemwisj4EeGLMXxCm9h8YgoCwIvndnuN1NdZxT4pdsesLXSaKaA==" crossorigin="anonymous"
+        referrerpolicy="no-referrer" />
+    <link rel="icon" type="image/png" href="./icon_aisshop1.png" />
+    <style>
+        body {
+            height: 100vh;
+            font-family: 'Prompt', sans-serif;
+
+        }
+
+        .bg1 {
+            background-image: linear-gradient(to left top,
+                    #c1f106,
+                    #96d82d,
+                    #70be3c,
+                    #50a343,
+                    #368845);
+        }
+
+        .blur {
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .blur:hover {
+            background-image: linear-gradient(to left top,
+                    #c1f106,
+                    #96d82d,
+                    #70be3c,
+                    #50a343,
+                    #368845);
+            color: #fff !important;
+        }
+
+        .blur:hover p {
+            color: #fff !important;
+        }
+
+        .blur:hover button.btn-primary {
+            color: #fff;
+            background-color: #000;
+        }
+
+        .brand {
+            color: #8dc63f;
+            cursor: pointer;
+        }
+
+        .blink {
+            animation: blinker 2s linear infinite;
+        }
+
+        @keyframes blinker {
+            50% {
+                opacity: 0.1;
+            }
+        }
+
+        .paginationjs {
+            display: flex;
+            justify-content: center;
+        }
+
+        #mainrow p {
+            @include media-breakpoint-down(md) {
+                font-size: rfs-fluid-value(0.8rem);
+            }
+        }
+
+        @media (max-width: 400px) {
+            #mainrow p {
+                font-size: 0.8rem;
+                /* 1.125rem is small enough, so RFS won't rescale this */
+            }
+        }
+
+        .offcanvas {
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        .navbar-custom {
+            background-color: rgba(0, 0, 0, 0.7);
+            min-height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .navbar-custom ul {
+            color: #c8c7c7;
+            padding: 0;
+            margin: 0;
+            width: 100%;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .navbar-custom ul li a {
+            color: #c8c7c7;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .navbar-custom ul li a:hover {
+            color: #b4d237;
+            cursor: pointer;
+        }
+
+        .navbar-custom ul li a {
+            @include media-breakpoint-down(md) {
+                font-size: rfs-fluid-value(0.5rem);
+            }
+        }
+
+        @media (max-width: 400px) {
+            .navbar-custom ul li a {
+                font-size: 0.5rem;
+                /* 1.125rem is small enough, so RFS won't rescale this */
+            }
+        }
+
+        @media (max-width: 600px) {
+            .navbar-custom ul li a {
+                font-size: 0.7rem;
+            }
+        }
+
+        .ads {
+            margin-top: 50px;
+        }
+
+        .input_style-small2 {
+            color: #000;
+            height: auto;
+            width: 25px;
+            border: none;
+            outline: none;
+            line-height: 35px;
+            background-color: #c1f106;
+            margin-bottom: 10px;
+            text-align: center;
+            border-bottom: 2px solid #70be3c;
+            border-radius: 6px;
+            margin: 3px;
+            padding: 0;
+        }
+
+        .input_style-small2.input_style-disable {
+            color: #c8c7c7;
+            background-color: #6f6f6f;
+        }
+
+        .offcanvas-body .row .col-12 a {
+            text-decoration: none;
+            color: #c8c7c7
+        }
+
+        .offcanvas-body .row .col-12 a:hover {
+            color: #b4d237
+        }
+    </style>
+    <title>AIS Lucky Number | เบอร์มงคลราคาพิเศษ</title>
+    <meta name="title" content="Lucky Number">
+    <meta name="description" content="">
+</head>
+
+<body>
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasWithBackdrop" aria-labelledby="offcanvasWithBackdropLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title text-light" id="offcanvasWithBackdropLabel">Menu</h5>
+            <button type="button" class="btn-close btn-close-white text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body text-light">
+            <div class="row">
+                <div class="col-12 border-light border-bottom-1">
+                    <a id="pretopost">เติมเงินเป็นรายเดือน</a>
+                    <hr>
+                </div>
+                <div class="col-12">
+                    <a href=""> AIS  FIBRE</a>
+                    <hr>
+                </div>
+                <div class="col-12">
+                    <a href=""></a>
+                    <hr>
+                </div>
+                <div class="col-12">
+                    <a href=""></a>
+                    <hr>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="navbar-custom fixed-top">
+        <a class="mx-2" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBackdrop" aria-controls="offcanvasWithBackdrop"><i class="fas fa-bars fs-2 text-light"></i></a>
+        <ul>
+            <li>
+                <a id="link1" target='_blank' data-bs-toggle="modal" data-bs-target="#howto" style="display: none;">
+                    ขั้นตอนซื้อเบอร์
+                </a>
+            </li>
+            <li>
+                <a id="link2" target='_blank' data-bs-toggle="modal" data-bs-target="#condition" style="display: none;">
+                  เงื่อนไข
+                </a>
+            </li>
+            <li>
+                <a id="link3" target='_blank' data-bs-toggle="modal" data-bs-target="#fixxy" style="display: none;">
+                  โปรโมชั่นพิเศษ
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="col-12">
+
+            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active" data-bs-interval="10000">
+                        <img id="ads1" alt="ads1" class="img-fluid ads" style="display: none" />
+                    </div>
+                    <div class="carousel-item" data-bs-interval="10000">
+                        <img id="ads2" alt="ads2" class="img-fluid ads" style="display: none" />
+                    </div>
+                    <div class="carousel-item" data-bs-interval="10000">
+                        <img id="ads3" alt="ads3" class="img-fluid ads" style="display: none" />
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+
+    </div>
+    <div style="height: 50px; background-color: #323232;" class="d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center mx-2 text-light" id="locationname">
+        </div>
+        <div class="mx-2">
+            &nbsp;
+            <a class="facebook" target="_blank" style="display: none;"><i class="fab fa-facebook-square brand" style="font-size:40px"></i></a>
+            &nbsp;
+            <a class="line" target="_blank" style="display: none;"><i class="fab fa-line brand" style="font-size:40px"></i></a>
+    
+        </div>
+      
+    </div>
+
+
+    <div id="searchsec" style="display: none;">
+        <section>
+            <div class="row align-items-center justify-content-center justify-content-sm-end mt-2 mx-2">
+                <p class="col-auto"><i class="fas fa-search"></i>&nbsp;ค้นหาจากหมายเลข</p>
+            </div>
+            <div class="row align-items-center justify-content-center justify-content-sm-end mx-2 mb-2">
+                <input type="text" class="input_style-small2 input_style-disable" disabled="" value="0" maxlength="1" oninput="this.value = this.value.replace(/[^0-9]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');">
+
+                <input type="text" class="input_style-small2 next_inp" maxlength="1" id="num1" value="" oninput="this.value = this.value.replace(/[^0-9]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" />
+                <input type="text" class="input_style-small2 next_inp" maxlength="1" id="num2" value="" oninput="this.value = this.value.replace(/[^0-9]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" />
+                -
+                <input type="text" class="input_style-small2 next_inp" maxlength="1" id="num3" value="" oninput="this.value = this.value.replace(/[^0-9]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" />
+                <input type="text" class="input_style-small2 next_inp" maxlength="1" id="num4" value="" oninput="this.value = this.value.replace(/[^0-9]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" />
+                <input type="text" class="input_style-small2 next_inp" maxlength="1" id="num5" value="" oninput="this.value = this.value.replace(/[^0-9]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" />
+                -
+                <input type="text" class="input_style-small2 next_inp" maxlength="1" id="num6" value="" oninput="this.value = this.value.replace(/[^0-9]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" />
+                <input type="text" class="input_style-small2 next_inp" maxlength="1" id="num7" value="" oninput="this.value = this.value.replace(/[^0-9]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" />
+                <input type="text" class="input_style-small2 next_inp" maxlength="1" id="num8" value="" oninput="this.value = this.value.replace(/[^0-9]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" />
+                <input type="text" class="input_style-small2 next_inp" maxlength="1" id="num9" value="" oninput="this.value = this.value.replace(/[^0-9]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" />
+            </div>
+
+            <div class="row align-items-center justify-content-center justify-content-sm-end m-2">
+                <div class="col-auto" style="display: none;">
+                    พบทั้งหมด <span id="searchcount">000</span> หมายเลข
+                </div>
+                <div class="col-auto">
+                    <button class="btn btn-primary" id="search">ค้นหา</button>
+                </div>
+                <div class="col-auto">
+                    <button class="btn btn-secondary" id="clear">ล้าง</button>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <div class="row justify-content-start mb-5 pb-5" id="mainrow" style="display: none">
+        <div class="col-6 col-md-3 p-3 " id="template-card" style="display: none">
+            <div class="p-3 blur text-center number-card position-relative">
+                <p class="fs-5 fw-bold number" style="color: #50a343">012345678</p>
+                <p class="name"></p>
+                <p class="packprice"></p>
+                <h6 class="promotion"></h6>
+                <button class="btn btn-sm btn-primary">สั่งซื้อ</button>
+                <span class="position-absolute top-0 start-75 ms-5 translate-middle badge rounded-pill bg-danger" style="display: none;"></span>
+            </div>
+
+        </div>
+
+        <div class="row justify-content-stsrt" id="data-container"></div>
+        <div class="row justify-content-center">
+            <div class="col-12 text-center">
+                <p><b>กดหน้าถัดไปในการเลือกหมายเลข </b> </p>
+            </div>
+
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-12 text-center">
+                <div id="pagination-container"></div>
+            </div>
+
+        </div>
+    </div>
+    <div class="row justify-content-end fixed-bottom">
+        <div class="col-auto bg-secondary text-light rounded-start text-end">
+            <p>
+                จำนวนผู้เข้าชม
+                <span>
+                    <img src="https://hitwebcounter.com/counter/counter.php?page=7906570&style=0006&nbdigits=7&type=ip&initCount=0" title="Free Counter" Alt="web counter" border="0" />
+                </span>
+            </p>
+        </div>
+        
+    </div>
+    </div>
+
+    <div id="successSwal" hidden>
+        <p>กรุณาคัดลอกรหัสการสั่งซื้อ หรือบันทึกภาพหน้าจอ</p>
+        <p>NUMBER</p>
+        <h4 class="text-primary">reservedID&nbsp;<button class="btn copy" title="Copied!!" data-clipboard-text="reservedID"><i class="far fa-copy text-secondary"></i></button></h4>
+        <p>แสดงรหัสการสั่งซื้อนี้กับพนักงานภายใน<br>due
+            <p />
+        <p>ติดต่อพนักงานได้ที่ <br>
+            <span> <a class="facebook" target="_blank"><i class="fab fa-facebook-square brand" style="font-size:50px"></i></a>
+                <br>
+                <a class="line" target="_blank"><i class="fab fa-line brand" style="font-size:50px"></i></a></span>
+        </p>
+    </div>
+    <div class="modal fade" id="howto" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="howtoLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="howtoLabel"> <span class="fs-4 text-danger fw-bold">การสั่งซื้อซิมการ์ด</span>
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    1. กดสั่งซื้อ <br>
+                    2. หลังจากได้รับเลขที่สั่งซื้อ <span class="fs-6 text-danger ">ตัวอย่าง #ASFFVBGF จำนวน 8 หลัก </span>
+                    บันทึกภาพ
+                    และนำส่งเลขที่จองให้พนักงาน ผ่าน Line , Chat Page Facebook ภายใน 60 นาที <br>
+                    3. ราคาหมายเลข และโปรโมชั่นที่ร่วมโครงการสอบถามกับพนักงานอีกครั้ง <br>
+                    4. การชำระเงินโอนผ่านบัญชี ธ.กรุงเทพ ชื่อบัญชี แอดวานซ์ ไวร์เลส เน็ทเวอร์ค เท่านั้น
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="condition" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="conditionLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="conditionLabel"> <span class="fs-4 text-danger fw-bold">เงื่อนไขหมายเลขมงคล</span>
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    เบอร์สวย เสริมชีวิต <br>
+                    1. ด้วยแพ็กเกจขั้นต่ำตามที่กำหนด เช่น 399 ,499 , 899 , 1,199 , 1,299 บาท/เดือนขึ้นไป และใช้บริการต่อเนื่องไปไม่น้อยกว่า 6/12
+                    เดือน <br>
+                    เบอร์พรีเมียม เบอร์สวย <br>
+                    2. เบอร์สวย เบอร์ตอง สมัครด้วยแพ็กเกจขั้นต่ำ 399 , 699 บาท/เดือนขึ้นไป และใช้บริการต่อเนื่องไปไม่น้อยกว่า 6 เดือน
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="fixxy" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="fixxyLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="fixxyLabel"> <span class="fs-4 text-danger fw-bold">โปรโมชั่นรายเดือน</span>
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body"><font size=2>
+                    <b>> 5G Max Speed 399 บาท </b> <br>
+                    เน็ต 5G/4G/3G ความเร็วสูงสุด 20 GB <br>
+                    หลังจากนั้นใช้ได้ไม่จัดกัดที่ความเร็ว 1Mbps ไม่จำกัด <br>
+                    โทรฟรีนอกเครือข่าย 100 นาที/เดือน ส่วนเกินนาทีละ 1.50 บาท
+                    <br>
+                    <hr class="style4">
+                    <b>> 5G Max Speed 499 บาท </b><br>
+                    เน็ต 5G/4G/3G 40 GB หลังจากนั้น 4 Mbps ไม่จำกัด <br>
+                    โทรฟรีนอกเครือข่าย 250 นาที/เดือน ส่วนเกินนาทีละ 1.50 บาท
+                    <br>
+                    <hr class="style4">
+                    <b>> 5G Max Speed 699 บาท </b> <br>
+                    เน็ต 5G/4G/3G 60 GB หลังจากนั้น 6 Mbps ไม่จำกัด <br>
+                    โทรฟรีนอกเครือข่าย 300 นาที/เดือน ส่วนเกินนาทีละ 1.50 บาท</font>
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var id
+        var maindata, ads, adspc
+        var scipturl =
+            'https://script.google.com/macros/s/AKfycbx4jqrvwxQ7xn5fxJXVbTfJhQM2zSLZw4ztnQXwQd-55ZYWjtFSAzBkhNUvw5DnsvNRCA/exec';
+        $(document).ready(() => {
+            let url = window.location.search
+            let urlParams = new URLSearchParams(url)
+            id = urlParams.get('branch')
+            $('#pretopost').attr('href','https://lin.ee/1kTQjsa')
+            $.getJSON(scipturl + '?action=getnumber&branch=' + id, createcard);
+        });
+        function createcard(json) {
+            console.log('🚀 ~ json', json);
+            // ads = [json.ads1, json.ads2, json.ads3]
+            // adspc = [json.ads1pc, json.ads2pc, json.ads3pc]
+            $('.line').attr('href', json.line).slideDown(200)
+            $('.facebook').attr('href', json.facebook).slideDown(200)
+            $('#link1').attr('href', json.link1).slideDown(200)
+            $('#link2').attr('href', json.link2).slideDown(200)
+            $('#link3').attr('href', json.link2).slideDown(200)
+            $('#locationname').html(json.location)
+            $('#searchsec').slideDown(200)
+            $(window).resize(function () {
+                let width = document.documentElement.clientWidth
+                if (width >= 600) {
+                    $('#ads1').attr('src', json.ads1pc).slideDown(200)
+                    $('#ads2').attr('src', json.ads2pc).slideDown(200)
+                    $('#ads3').attr('src', json.ads3pc).slideDown(200)
+                } else {
+                    $('#ads1').attr('src', json.ads1).slideDown(200)
+                    $('#ads2').attr('src', json.ads2).slideDown(200)
+                    $('#ads3').attr('src', json.ads3).slideDown(200)
+                }
+            })
+            $(window).resize()
+            let data = json.data;
+            maindata = json.data
+            $('#pagination-container').pagination({
+                dataSource: data,
+                locator: 'items',
+                pageSize: 50,
+                pageRange: 1,
+                autoHidePrevious: true,
+                autoHideNext: true,
+                className: 'paginationjs-theme-green',
+                // prevText: 'ก่อนหน้า',
+                // nextText: 'ถัดไป',
+                callback: function (data, pagination) {
+                    simpleTemplating(data)
+                }
+            })
+
+            $('#mainrow').show(500);
+        }
+
+        function simpleTemplating(data) {
+            $('#data-container').html('')
+            data.forEach((row) => {
+                let card = $('#template-card').clone();
+                card.attr('id', row.number);
+                $('#data-container').append(card)
+                $('#' + row.number + ' .number').html(row.number);
+                $('#' + row.number + ' .name').html(row.name);
+                $('#' + row.number + ' .packprice').html('รายเดือนเริ่มต้น: ' + row.packprice);
+                $('#' + row.number + ' .promotion').html(`ราคา : <span class="fs-4 text-danger fw-bold">${row.promotion}</span> บาท`);
+                if (row.status == 'สั่งซื้อแล้ว') {
+                    $('#' + row.number + ' .btn')
+                        .html(row.status)
+                        .removeClass('btn-primary')
+                        .addClass('btn-secondary')
+                        .attr('disabled', true);
+                }
+                if (row.grade != '') {
+                    $('#' + row.number + ' .badge').html(`<span class="blink">${row.grade}</span>`).show()
+                }
+                $(card).show();
+                $('#' + row.number + ' .btn').click(function () {
+                    let number = $.trim(
+                        $('#' + row.number)
+                            .find('.number')
+                            .html()
+                    );
+                    let name = $.trim(
+                        $('#' + row.number)
+                            .find('.name')
+                            .html()
+                    );
+                    let promotion = $.trim(
+                        $('#' + row.number)
+                            .find('.promotion')
+                            .html()
+                    );
+                    Swal.fire({
+                        icon: 'info',
+                        title: 'กรุณาตรวจสอบรายการ',
+                        html: `
+                <p>เบอร์ที่สั่งซื้อ: <span class="text-primary">${number}</span></p>
+                <p>เบอร์มงคล: <span class="text-primary">${name}</span></p>
+                <p><span class="text-primary">${promotion}</span></p>
+                <p class="text-danger">หลังจากการสั่งซื้อ คุณมีเวลาในการทำรายการ 60 นาที<br>หลังจากนั้นเบอร์นี้จะถูกยกเลิกกการสั่งซื้อ</p>
+                `,
+                        showCancelButton: true,
+                        confirmButtonText: 'สั่งซื้อ',
+                        cancelButtonText: `ยกเลิก`,
+                    }).then((result) => {
+                        /* Read more about isConfirmed, isDenied below */
+                        if (result.isConfirmed) {
+                            reserve(number);
+                        }
+                    });
+                });
+            });
+        }
+        function reserve(number) {
+            Swal.fire({
+                icon: 'info',
+                title: 'กำลังสั่งซื้อ...',
+                showConfirmButton: false,
+                allowOutsideClick: false,
+            });
+            $.getJSON(scipturl + '?action=reserve&num=' + number + '&branch=' + id, (res) => {
+                console.log('🚀 ~ res', res);
+                if (res == 'sold') {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'ไม่สามารถสั่งซื้อได้',
+                        text: 'เนื่องจากมีการขายเบอร์นี้ไปแล้ว',
+                    }).then(() => {
+                        window.location.reload();
+                    });
+                } else if (res == 'reserved') {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'ไม่สามารถสั่งซื้อได้',
+                        text: 'เนื่องจากมีลูกค้าท่านอื่นสั่งซื้อเบอร์นี้ไปแล้ว',
+                    }).then(() => {
+                        window.location.reload();
+                    });
+                } else if (res == 'notfound') {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'ไม่สามารถสั่งซื้อได้',
+                        text: 'เนื่องจากไม่พบเบอร์นี้ในระบบ',
+                    }).then(() => {
+                        window.location.reload();
+                    });
+                } else {
+                    $('#' + res.number + ' .btn')
+                        .html(
+                            'กรุณาทำรายการภายในเวลา<br>' +
+                            res.due +
+                            '<br><span class="text-light">' +
+                            res.reservedID +
+                            '</span>'
+                        )
+                        .removeClass('btn-primary')
+                        .addClass('btn-success')
+                        .attr('disabled', true);
+                    localStorage.setItem('phoneNumberReserveUID', res.uid);
+                    $('#successSwal')
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'สั่งซื้อเรียบร้อย',
+                        html: $('#successSwal').html().replace(/reservedID/g, res.reservedID).replace('due', res.due).replace('NUMBER', res.number),
+                    });
+                    $('.copy').tooltip({
+                        trigger: 'click',
+                        placement: 'bottom',
+                    });
+
+                    function setTooltip(btn, message) {
+                        $(btn)
+                            .tooltip('hide')
+                            .attr('data-original-title', message)
+                            .tooltip('show');
+                    }
+
+                    function hideTooltip(btn) {
+                        setTimeout(function () {
+                            $(btn).tooltip('hide');
+                        }, 1000);
+                    }
+
+                    // Clipboard
+
+                    var clipboard = new Clipboard('.copy');
+
+                    clipboard.on('success', function (e) {
+                        setTooltip(e.trigger, 'Copied!');
+                        hideTooltip(e.trigger);
+                    });
+
+                    clipboard.on('error', function (e) {
+                        setTooltip($(this), 'Failed!');
+                        hideTooltip(e.trigger);
+                    });
+                }
+            });
+        }
+    </script>
+    <script>
+        $('.input_style-small2').on('keyup', function () {
+            if ($(this).val().length >= 1) {
+                this.nextElementSibling.focus()
+            } else if (event.keyCode == 13) {
+                $('#search').click()
+            }
+        })
+        $('#search').click(function () {
+            let tmp = [...maindata]
+            for (var i = 1; i <= 9; i++) {
+                let checknum = $('#num' + i).val()
+                if (checknum == '') continue;
+                console.log("🚀 ~ checknum", checknum)
+                tmp = tmp.filter(data => {
+                    if (data.number.charAt(i) == checknum) return true
+
+                    else return false
+                })
+            }
+
+
+            $('#searchcount').html(tmp.length)
+            $('#searchcount').closest('.col-auto').show()
+            let container = $('#pagination-container')
+            container.pagination('destroy')
+            container.pagination({
+                dataSource: tmp,
+                locator: 'items',
+                pageSize: 50,
+                pageRange: 1,
+                autoHidePrevious: true,
+                autoHideNext: true,
+                className: 'paginationjs-theme-green',
+                callback: function (tmp, pagination) {
+                    simpleTemplating(tmp)
+                }
+            })
+        })
+
+        $('#clear').click(function () {
+            $('.next_inp').val('')
+            $('#searchcount').closest('.col-auto').hide()
+            let container = $('#pagination-container')
+            container.pagination('destroy')
+            container.pagination({
+                dataSource: maindata,
+                locator: 'items',
+                pageSize: 50,
+                pageRange: 1,
+                autoHidePrevious: true,
+                autoHideNext: true,
+                className: 'paginationjs-theme-green',
+                callback: function (data, pagination) {
+                    simpleTemplating(data)
+                }
+            })
+        })
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.4.0/clipboard.min.js" integrity="sha512-iJh0F10blr9SC3d0Ow1ZKHi9kt12NYa+ISlmCdlCdNZzFwjH1JppRTeAnypvUez01HroZhAmP4ro4AvZ/rG0UQ==" crossorigin="anonymous"
+        referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.5/pagination.min.js" integrity="sha512-1zzZ0ynR2KXnFskJ1C2s+7TIEewmkB2y+5o/+ahF7mwNj9n3PnzARpqalvtjSbUETwx6yuxP5AJXZCpnjEJkQw==" crossorigin="anonymous"
+        referrerpolicy="no-referrer"></script>
+</body>
+</div>
+
+</html>
